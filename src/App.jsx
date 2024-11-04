@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { mainRoutes } from './routers/main-router';
+import BoardLayout from './routes/board/layout';
 
 function renderRoutes(routesObj) {
   return routesObj.map((route) => {
@@ -40,10 +41,18 @@ function renderRoutes(routesObj) {
 function App() {
   return (
     <>
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Routes>{renderRoutes(mainRoutes)}</Routes>
-      </BrowserRouter>
-      {/* <RouterProvider router={mainRouter} /> */}
+        <Routes>
+          <Route path="/">메인페이지</Route>
+          <Route path="/board" element={<BoardLayout />}>
+            보드
+            <Route>보드 1</Route>
+            <Route path="sample">보드 1</Route>
+          </Route>
+        </Routes>
+      </BrowserRouter> */}
+      <RouterProvider router={mainRouter} />
     </>
   );
 }

@@ -1,9 +1,10 @@
 // Router: 각 URL에 따른 page 컴포넌트 연결
 import { createBrowserRouter } from 'react-router-dom';
 import MainPage from '~/routes/page';
-import BoardListPage from '~/routes/board/page';
 
 import BoardLayout from '~/routes/board/layout';
+import BoardListPage from '~/routes/board/page';
+import BoardDetailPage from '~/routes/board/detail/page';
 
 export const mainRoutes = [
   {
@@ -21,6 +22,10 @@ export const mainRoutes = [
         path: '',
         index: true,
         element: <BoardListPage />,
+      },
+      {
+        path: ':boardId',
+        element: <BoardDetailPage />,
       },
     ],
   },
