@@ -3,7 +3,9 @@ import { createBrowserRouter } from 'react-router-dom';
 import MainPage from '~/routes/page';
 import BoardListPage from '~/routes/board/page';
 
-const router = createBrowserRouter([
+import BoardLayout from '~/routes/board/layout';
+
+export const mainRoutes = [
   {
     path: '/',
     element: <MainPage />,
@@ -11,8 +13,18 @@ const router = createBrowserRouter([
   },
   {
     path: '/board',
-    element: <BoardListPage />,
-    index: true,
+    // element: <BoardListPage />,
+    element: <BoardLayout />,
+    // index: true,
+    children: [
+      {
+        path: '',
+        index: true,
+        element: <BoardListPage />,
+      },
+    ],
   },
-]);
+];
+
+const router = createBrowserRouter(mainRoutes);
 export default router;
