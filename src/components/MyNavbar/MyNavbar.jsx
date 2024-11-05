@@ -7,6 +7,8 @@ import {
   Offcanvas,
 } from 'react-bootstrap';
 
+import { Link } from 'react-router-dom';
+
 const EXPAND_BREAKPOINT = 'md';
 
 export default function MyNavbar({ brandTitle, offCanvasTitle }) {
@@ -36,9 +38,15 @@ export default function MyNavbar({ brandTitle, offCanvasTitle }) {
             <Nav
               className={`justify-content-around flex-row pb-4 pb-${EXPAND_BREAKPOINT}-0`}
             >
-              <Nav.Link className="flex-grow-1 text-center border border-dark border-end-0">
-                로그인
+              <Nav.Link
+                as="div"
+                className="flex-grow-1 text-center border border-dark border-end-0"
+              >
+                <Link to="/login" state={{ redirect: 'redirectUri' }}>
+                  로그인
+                </Link>
               </Nav.Link>
+
               <Nav.Link className="flex-grow-1 text-center border border-dark">
                 회원가입
               </Nav.Link>

@@ -5,27 +5,32 @@ import MainPage from '~/routes/page';
 import BoardLayout from '~/routes/board/layout';
 import BoardListPage from '~/routes/board/page';
 import BoardDetailPage from '~/routes/board/detail/page';
+import LoginPage from '~/routes/login/page';
+import SignupPage from '~/routes/signup/page';
 
 export const mainRoutes = [
   {
     path: '/',
-    element: <MainPage />,
-    index: true,
-  },
-  {
-    path: '/board',
-    // element: <BoardListPage />,
     element: <BoardLayout />,
-    // index: true,
     children: [
+      { element: <MainPage />, index: true },
+      { element: <LoginPage />, path: 'login' },
+      { element: <SignupPage />, path: 'signup' },
       {
-        path: '',
-        index: true,
-        element: <BoardListPage />,
-      },
-      {
-        path: ':boardId',
-        element: <BoardDetailPage />,
+        path: '/board',
+        // element: <BoardListPage />,
+        // index: true,
+        children: [
+          {
+            path: '',
+            index: true,
+            element: <BoardListPage />,
+          },
+          {
+            path: ':boardId',
+            element: <BoardDetailPage />,
+          },
+        ],
       },
     ],
   },

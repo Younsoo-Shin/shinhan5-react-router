@@ -14,3 +14,18 @@ export async function fetchBoardList() {
     return [];
   }
 }
+
+export async function fetchBoardDetail(boardId) {
+  try {
+    const res = await fetch(`${BASE_URL}/board/${boardId}`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
+    return res.json();
+  } catch (error) {
+    console.error(error);
+    return {};
+  }
+}
