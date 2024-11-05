@@ -47,8 +47,11 @@ export default function MyNavbar({ brandTitle, offCanvasTitle }) {
                 </Link>
               </Nav.Link>
 
-              <Nav.Link className="flex-grow-1 text-center border border-dark">
-                회원가입
+              <Nav.Link
+                as="div"
+                className="flex-grow-1 text-center border border-dark"
+              >
+                <Link to="/signup">회원가입</Link>
               </Nav.Link>
             </Nav>
             <Nav className="justify-content-start flex-grow-1 pe-3">

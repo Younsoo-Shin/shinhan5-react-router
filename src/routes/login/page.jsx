@@ -2,6 +2,8 @@ import { useState, useCallback } from 'react';
 
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { Container, Form, FloatingLabel, Button } from 'react-bootstrap';
+import { serverLogin } from '~/lib/apis/auth';
+
 /**
  * http://localhost:5173/login?redirect=sample
  */
@@ -10,6 +12,13 @@ export default function LoginPage() {
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const navigate = useNavigate();
+
+  const onSubmitLogin = useCallback(() => {
+    serverLogin({ email: userEmail, password: userPassword }).then((data) => {
+      console.log(data);
+      navigate('/');
+    });
+  }, [userEmail, userPassword, navigate]);
 
   return (
     <Container className="min-vh-100  d-flex flex-column justify-content-center align-items-center">
@@ -25,6 +34,9 @@ export default function LoginPage() {
             type="email"
             placeholder="name@example.com"
             required
+            onChange={(e) => {
+              setUserEmail(e.target.value);
+            }}
           />
         </FloatingLabel>
         <FloatingLabel
@@ -37,10 +49,15 @@ export default function LoginPage() {
             type="password"
             placeholder="Password"
             required
+            onChange={(e) => {
+              setUserPassword(e.target.value);
+            }}
           />
         </FloatingLabel>
 
-        <Button className="w-100">로그인</Button>
+        <Button className="w-100" onClick={onSubmitLogin}>
+          로그인
+        </Button>
       </div>
     </Container>
   );
