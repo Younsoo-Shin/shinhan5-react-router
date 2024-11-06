@@ -19,3 +19,8 @@ export async function serverLogin({ email, password }) {
     return {};
   }
 }
+
+export async function serverLogout() {
+  const res = await fetch(`${BASE_URI}/users/logout`);
+  return await res.json();
+}

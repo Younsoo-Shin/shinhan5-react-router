@@ -10,13 +10,14 @@ import {
 import { Link } from 'react-router-dom';
 // import useAuth from '~/lib/hooks/auth';
 import useAuth from '~/lib/hooks/useAuth';
+import serverLogout from '~/lib/apis/auth';
 
 const EXPAND_BREAKPOINT = 'md';
 
 export default function MyNavbar({ brandTitle, offCanvasTitle }) {
   // MyNavbar에서 Login되어있으면, (로그인,회원가입탭 X // 로그아웃탭 O)
   // MyNavbar에서 Login X, (로그인,회원가입탭 O // 로그아웃탭 X)
-  const { user } = useAuth();
+  const { user, clientLogout } = useAuth();
   return (
     <Navbar
       expand={EXPAND_BREAKPOINT}
@@ -64,6 +65,10 @@ export default function MyNavbar({ brandTitle, offCanvasTitle }) {
                 <Nav.Link
                   as="div"
                   className="flex-grow-1 text-center border border-dark border-end-0"
+                  onClick={() => {
+                    serverLogout();
+                    clientLogout();
+                  }}
                 >
                   로그아웃
                 </Nav.Link>
