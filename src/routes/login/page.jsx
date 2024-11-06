@@ -3,7 +3,7 @@ import { useState, useCallback } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { Container, Form, FloatingLabel, Button } from 'react-bootstrap';
 import { serverLogin } from '~/lib/apis/auth';
-import useAuth from '~/ib/hooks/useAuth';
+import useAuth from '~/lib/hooks/useAuth';
 /**
  * http://localhost:5173/login?redirect=sample
  */
