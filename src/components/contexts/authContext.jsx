@@ -9,10 +9,13 @@ export default function AuthProvider({ children }) {
 
   useEffect(() => {
     // 1번째 방법
-    const userStr = sessionStorage.getItem(AUTH_KEY);
-    if (userStr) {
-      setUser(JSON.parse(userStr));
-    }
+    // const userStr = sessionStorage.getItem(AUTH_KEY);
+    // if (userStr) {
+    //   setUser(JSON.parse(userStr));
+    // }
+
+    // 2번째 방법
+    checkLogin();
   }, []);
 
   const clientLogin = useCallback((user) => {
@@ -36,6 +39,7 @@ export default function AuthProvider({ children }) {
       setUser(user);
       return user;
     }
+    setUser(null);
     return null;
   }, []);
 

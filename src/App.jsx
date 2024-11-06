@@ -13,6 +13,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { mainRoutes } from './routers/main-router';
 import BoardLayout from './routes/board/layout';
 
+import AuthProvider from './components/contexts/authContext';
+
 function renderRoutes(routesObj) {
   return routesObj.map((route) => {
     if (route.children) {
@@ -52,7 +54,9 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter> */}
-      <RouterProvider router={mainRouter} />
+      <AuthProvider>
+        <RouterProvider router={mainRouter} />
+      </AuthProvider>
     </>
   );
 }
