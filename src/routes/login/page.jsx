@@ -3,7 +3,7 @@ import { useState, useCallback } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { Container, Form, FloatingLabel, Button } from 'react-bootstrap';
 import { serverLogin } from '~/lib/apis/auth';
-
+import useAuth from '~/ib/hooks/useAuth';
 /**
  * http://localhost:5173/login?redirect=sample
  */
@@ -12,10 +12,12 @@ export default function LoginPage() {
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const navigate = useNavigate();
+  const { clientLogin } = useAuth();
 
   const onSubmitLogin = useCallback(() => {
     serverLogin({ email: userEmail, password: userPassword }).then((data) => {
       console.log(data);
+      clientLogin(data);
       navigate('/');
     });
   }, [userEmail, userPassword, navigate]);
