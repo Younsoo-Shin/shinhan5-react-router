@@ -10,7 +10,8 @@ import {
 import { Link } from 'react-router-dom';
 // import useAuth from '~/lib/hooks/auth';
 import useAuth from '~/lib/hooks/useAuth';
-import serverLogout from '~/lib/apis/auth';
+
+import { serverLogout } from '~/lib/apis/auth';
 
 const EXPAND_BREAKPOINT = 'md';
 
